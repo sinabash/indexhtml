@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Copy Pre-Filled Text Boxes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 60px;
+            gap: 25px;
+        }
+        .box {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px #0001;
+            padding: 20px 15px 14px 15px;
+            text-align: center;
+            width: 240px;
+        }
+        textarea {
+            width: 98%;
+            height: 80px;
+            font-size: 15px;
+            resize: none;
+        }
+        button {
+            margin-top: 16px;
+            padding: 10px 26px;
+            font-size: 17px;
+            cursor: pointer;
+            background: #0984e3;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #6366f1;
+        }
+        .status {
+            margin-top: 8px;
+            min-height: 16px;
+            color: #16a34a;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center;">Copy Pre-filled Text Examples</h2>
+    <div class="container">
+        <!-- Box 1 -->
+        <div class="box">
+            <h3>Text 1</h3>
+            <textarea id="text1" readonly>This is the first pre-filled text for copy.</textarea>
+            <br>
+            <button onclick="copyText('text1', 'status1')">Copy</button>
+            <div class="status" id="status1"></div>
+        </div>
+        <!-- Box 2 -->
+        <div class="box">
+            <h3>Text 2</h3>
+            <textarea id="text2" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
+            <br>
+            <button onclick="copyText('text2', 'status2')">Copy</button>
+            <div class="status" id="status2"></div>
+        </div>
+        <!-- Box 3 -->
+        <div class="box">
+            <h3>Text 3</h3>
+            <textarea id="text3" readonly>Your custom instructions can go here!</textarea>
+            <br>
+            <button onclick="copyText('text3', 'status3')">Copy</button>
+            <div class="status" id="status3"></div>
+        </div>
+    </div>
+
+    <script>
+        function copyText(textareaId, statusId) {
+            var textarea = document.getElementById(textareaId);
+            textarea.select();
+            textarea.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            document.getElementById(statusId).innerText = "Copied!";
+            setTimeout(function() {
+                document.getElementById(statusId).innerText = "";
+            }, 1400);
+        }
+    </script>
+</body>
+</html>
